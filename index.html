@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Curso de Criptomonedas – Realidad o Estafa</title>
+  <meta name="description" content="Curso gratuito sobre criptomonedas: módulos, videos, preguntas, examen final y certificado descargable." />
+  <style>
+    :root{
+      --primary:#0b409c;
+      --accent:#10b981;
+      --warn:#f97316;
+      --bg:#f4f7fb;
+      --card:#fff;
+      --text:#1f2937;
+      --muted:#6b7280;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Inter,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased}
+    header{background:linear-gradient(90deg,var(--primary),#0e5bbf);color:#fff;padding:28px 12px;text-align:center}
+    header h1{margin:0;font-size:22px}
+    .wrap{max-width:1100px;margin:22px auto;padding:0 16px}
+    .card{background:var(--card);border-radius:12px;padding:18px;box-shadow:0 6px 18px rgba(15,23,42,0.06);margin-bottom:16px}
+    .grid{display:grid;grid-template-columns:1fr 360px;gap:18px}
+    @media(max-width:980px){.grid{grid-template-columns:1fr}}
+    .btn{display:inline-block;background:var(--primary);color:#fff;padding:10px 14px;border-radius:8px;text-decoration:none;border:none;cursor:pointer}
+    .btn.secondary{background:#eef2ff;color:var(--primary);border:1px solid #dbeafe}
+    .btn.warn{background:var(--warn)}
+    .module-list{display:flex;flex-direction:column;gap:10px}
+    .module-card{border-radius:10px;padding:12px;background:#fbfdff;border:1px solid #eef2ff;display:flex;justify-content:space-between;align-items:center}
+    label{display:block;margin-top:8px;font-weight:600}
+    input[type=text],input[type=email],input[type=number]{width:100%;padding:10px;border-radius:8px;border:1px solid #e6eef8;margin-top:6px}
+    .video{width:100%;height:0;padding-bottom:56%;position:relative;border-radius:8px;overflow:hidden;margin-bottom:12px}
+    .video iframe{position:absolute;left:0;top:0;width:100%;height:100%;border:0}
+    .question{background:#fff;padding:12px;border-radius:8px;border:1px solid #eceff8;margin-bottom:10px}
+    .result{font-weight:700;margin-top:8px}
+    .correct{color:green}
+    .wrong{color:red}
+    .small{font-size:13px;color:var(--muted)}
+    .progressbar{height:12px;background:#eef2ff;border-radius:999px;overflow:hidden}
+    .progressbar > i{display:block;height:100%;background:linear-gradient(90deg,var(--primary),#06b6d4);width:0%}
+    footer{padding:18px;text-align:center;color:#fff;background:linear-gradient(90deg,var(--primary),#0e5bbf);margin-top:24px}
+    .center{text-align:center}
+    .muted{color:var(--muted)}
+    .row{display:flex;gap:10px;align-items:center}
+    .badge{display:inline-block;padding:6px 8px;border-radius:999px;background:#f1f5f9;color:var(--muted);font-weight:600}
+    .hidden{display:none}
+    .navlink{display:inline-block;margin-right:8px;color:#fff;text-decoration:underline;cursor:pointer}
+  </style>
+
+  <!-- jsPDF for certificate generation -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+  <header>
+    <h1>Curso de Criptomonedas — ¿Realidad o Estafa?</h1>
+    <p class="small">Curso gratuito y accesible para adultos: aprende, practica y obtén tu certificado.</p>
+    <div style="margin-top:10px">
+      <span class="navlink" onclick="openModule(0)">Inicio</span>
+      <span class="navlink" onclick="openModule(1)">Módulo 1</span>
+      <span class="navlink" onclick="openModule(2)">Módulo 2</span>
+      <span class="navlink" onclick="openModule(3)">Módulo 3</span>
+      <span class="navlink" onclick="openModule('final')">Examen Final</span>
+    </div>
+  </header>
+
+  <div class="wrap">
+    <!-- Registro -->
+    <div class="card" id="registroCard">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+        <div>
+          <h2 style="margin:0 0 6px 0">Registro</h2>
+          <div class="small muted">Ingresa tu nombre, correo y edad para guardar tu progreso y generar certificado.</div>
+        </div>
+        <div class="row">
+          <div class="badge">Privado → Local</div>
+        </div>
+      </div>
+
+      <div style="margin-top:12px;display:grid;grid-template-columns:1fr 1fr 120px;gap:10px">
+        <div>
+          <label for="nombre">Nombre completo</label>
+          <input id="nombre" type="text" placeholder="Ej. María Pérez">
+        </div>
+        <div>
+          <label for="correo">Correo electrónico</label>
+          <input id="correo" type="email" placeholder="ejemplo@correo.com">
+        </div>
+        <div>
+          <label for="edad">Edad</label>
+          <input id="edad" type="number" min="12" placeholder="Edad" style="width:100%">
+        </div>
+      </div>
+
+      <div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap">
+        <button class="btn" onclick="guardarRegistro()">Guardar y mostrar módulos</button>
+        <button class="btn secondary" onclick="cargarRegistro()">Cargar datos guardados</button>
+        <button class="btn secondary" onclick="borrarDatos()">Borrar datos</button>
+      </div>
+    </div>
+
+    <div class="grid">
+      <!-- Left: contenido -->
+      <main>
+        <!-- Inicio & módulos -->
+        <div class="card" id="inicioCard">
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:12px">
+            <div>
+              <h2 style="margin:0">Bienvenido al curso</h2>
+              <div class="small muted">Elige un módulo o ve al examen final. Tu progreso se guarda automáticamente en este navegador.</div>
+            </div>
+            <div style="text-align:right">
+              <div class="small muted">Progreso general</div>
+              <div class="progressbar" style="width:220px"><i id="progressBar"></i></div>
+              <div class="small muted" id="progressPct">0%</div>
+            </div>
+          </div>
+
+          <div style="margin-top:14px" id="modulosArea" class="module-list hidden">
+            <div class="module-card" id="cardMod1">
+              <div>
+                <h3 style="margin:0">Módulo 1 — Introducción</h3>
+                <div class="small muted">Conceptos básicos y blockchain</div>
+              </div>
+              <div>
+                <button class="btn" onclick="openModule(1)">Ingresar</button>
+              </div>
+            </div>
+
+            <div class="module-card" id="cardMod2">
+              <div>
+                <h3 style="margin:0">Módulo 2 — Estafas y prevención</h3>
+                <div class="small muted">Identificar fraudes y protegerse</div>
+              </div>
+              <div>
+                <button class="btn" onclick="openModule(2)">Ingresar</button>
+              </div>
+            </div>
+
+            <div class="module-card" id="cardMod3">
+              <div>
+                <h3 style="margin:0">Módulo 3 — Uso seguro</h3>
+                <div class="small muted">Wallets, claves y autenticación</div>
+              </div>
+              <div>
+                <button class="btn" onclick="openModule(3)">Ingresar</button>
+              </div>
+            </div>
+
+            <div class="module-card" id="cardFinal">
+              <div>
+                <h3 style="margin:0">Examen Final</h3>
+                <div class="small muted">20 preguntas. Necesitas ≥14/20 para aprobar.</div>
+              </div>
+              <div>
+                <button class="btn" onclick="openModule('final')">Ir al examen</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Module 1 -->
+        <section class="card hidden" id="mod1Card">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <div>
+              <h2 style="margin:0">Módulo 1 — ¿Qué son las criptomonedas?</h2>
+              <div class="small muted">Duración aprox. 6 min</div>
+            </div>
+            <div style="display:flex;gap:8px;align-items:center">
+              <button class="btn secondary" onclick="marcarModulo(1)">Marcar completado</button>
+              <button class="btn" onclick="volverInicio()">Volver</button>
+            </div>
+          </div>
+
+          <div class="video" style="margin-top:12px">
+            <iframe src="https://www.youtube.com/embed/6Gu2QMTAkEU" title="Introducción a Criptomonedas" allowfullscreen></iframe>
+          </div>
+
+          <p class="small">Explicación sencilla sobre Bitcoin, blockchain y tokens.</p>
+          <img src="https://i.imgur.com/L2Qw2CQ.jpeg" alt="Ilustración blockchain" style="width:100%;border-radius:8px;margin-top:12px">
+
+          <div style="margin-top:12px" id="mod1Questions">
+            <!-- 10 preguntas módulo 1 -->
+          </div>
+
+          <div style="display:flex;gap:10px;margin-top:8px">
+            <button class="btn" onclick="evaluarModulo(1)">Evaluar Módulo</button>
+            <button class="btn secondary" onclick="marcarModulo(1)">Marcar como completado</button>
+          </div>
+          <p id="mod1Result" class="result"></p>
+        </section>
+
+        <!-- Module 2 -->
+        <section class="card hidden" id="mod2Card">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <div>
+              <h2 style="margin:0">Módulo 2 — Estafas y prevención</h2>
+              <div class="small muted">Duración aprox. 8 min</div>
+            </div>
+            <div style="display:flex;gap:8px;align-items:center">
+              <button class="btn secondary" onclick="marcarModulo(2)">Marcar completado</button>
+              <button class="btn" onclick="volverInicio()">Volver</button>
+            </div>
+          </div>
+
+          <div class="video" style="margin-top:12px">
+            <iframe src="https://www.youtube.com/embed/uf0R0bBq5Hk" title="Prevención de estafas" allowfullscreen></iframe>
+          </div>
+
+          <p class="small">Identifica señales: promesas de ganancias garantizadas, presión para invertir, apps falsas y control remoto.</p>
+          <img src="https://i.imgur.com/xQILB3R.jpeg" alt="Prevencion estafas" style="width:100%;border-radius:8px;margin-top:12px">
+
+          <div style="margin-top:12px" id="mod2Questions">
+            <!-- 10 preguntas módulo 2 -->
+          </div>
+
+          <div style="display:flex;gap:10px;margin-top:8px">
+            <button class="btn" onclick="evaluarModulo(2)">Evaluar Módulo</button>
+            <button class="btn secondary" onclick="marcarModulo(2)">Marcar como completado</button>
+          </div>
+          <p id="mod2Result" class="result"></p>
+        </section>
+
+        <!-- Module 3 -->
+        <section class="card hidden" id="mod3Card">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <div>
+              <h2 style="margin:0">Módulo 3 — Uso seguro</h2>
+              <div class="small muted">Duración aprox. 6 min</div>
+            </div>
+            <div style="display:flex;gap:8px;align-items:center">
+              <button class="btn secondary" onclick="marcarModulo(3)">Marcar completado</button>
+              <button class="btn" onclick="volverInicio()">Volver</button>
+            </div>
+          </div>
+
+          <div class="video" style="margin-top:12px">
+            <iframe src="https://www.youtube.com/embed/SSo_EIwHSd4" title="Uso seguro" allowfullscreen></iframe>
+          </div>
+
+          <p class="small">Buenas prácticas: wallets oficiales, no compartir claves, 2FA y verificación de enlaces.</p>
+          <img src="https://i.imgur.com/BXFl4LX.png" alt="Claves privadas" style="width:100%;border-radius:8px;margin-top:12px">
+
+          <div style="margin-top:12px" id="mod3Questions">
+            <!-- 10 preguntas módulo 3 -->
+          </div>
+
+          <div style="display:flex;gap:10px;margin-top:8px">
+            <button class="btn" onclick="evaluarModulo(3)">Evaluar Módulo</button>
+            <button class="btn secondary" onclick="marcarModulo(3)">Marcar como completado</button>
+          </div>
+          <p id="mod3Result" class="result"></p>
+        </section>
+
+        <!-- Final exam -->
+        <section class="card hidden" id="finalCard">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <div>
+              <h2 style="margin:0">Examen Final</h2>
+              <div class="small muted">20 preguntas. Necesitas <strong id="finalPass">14</strong>/20 para aprobar.</div>
+            </div>
+            <div style="text-align:right">
+              <div class="small muted">Temporizador (opcional)</div>
+              <div class="small" id="timerDisplay">--:--</div>
+            </div>
+          </div>
+
+          <div style="margin-top:12px">
+            <label><input type="checkbox" id="enableTimer"> Activar temporizador (15 min)</label>
+          </div>
+
+          <div id="examArea" style="margin-top:12px"></div>
+
+          <div style="display:flex;gap:10px;margin-top:12px;flex-wrap:wrap">
+            <button class="btn" onclick="calcularFinal()">Enviar Examen</button>
+            <button class="btn secondary" onclick="resetExam()">Reiniciar</button>
+            <button class="btn" id="downloadCertBtn" style="display:none" onclick="generarCertificado()">Descargar Certificado</button>
+          </div>
+
+          <p id="finalScore" class="result"></p>
+        </section>
+
+      </main>
+
+      <!-- Right column: dashboard y recursos -->
+      <aside>
+        <div class="card">
+          <h3 style="margin:0">Tu progreso</h3>
+          <div class="small muted" style="margin-top:8px">Nombre: <strong id="dashName">-</strong></div>
+          <div class="small muted">Correo: <strong id="dashEmail">-</strong></div>
+          <div class="small muted">Edad: <strong id="dashAge">-</strong></div>
+          <div style="margin-top:10px">Módulos completados: <strong id="completedCount">0</strong>/3</div>
+          <div style="margin-top:10px" class="small muted">Examen final: <span id="examState">No realizado</span></div>
+          <div style="margin-top:12px"><button class="btn" onclick="irAlExamen()">Ir al examen</button></div>
+          <div style="margin-top:10px"><button class="btn secondary" onclick="continuarDondeQuede()">Continuar donde quedé</button></div>
+        </div>
+
+        <div class="card">
+          <h3 style="margin:0">Recursos</h3>
+          <ul class="small muted" style="margin-top:8px">
+            <li>Checklist de seguridad (PDF)</li>
+            <li>Enlaces oficiales de denuncia</li>
+            <li>Guía rápida para adultos</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3 style="margin:0">Enviar a Google Sheets (opcional)</h3>
+          <div class="small muted" style="margin-top:8px">Pega la URL del WebApp (Google Apps Script) si quieres guardar registros en una hoja.</div>
+          <input id="sheetUrl" type="text" placeholder="https://script.google.com/..." style="width:100%;padding:8px;border-radius:8px;border:1px solid #e6eef8;margin-top:8px">
+          <div style="display:flex;gap:8px;margin-top:8px">
+            <button class="btn secondary" onclick="saveSheetUrl()">Guardar</button>
+            <button class="btn" onclick="sendToSheet()">Enviar ahora</button>
+          </div>
+          <p id="sheetMsg" class="small muted" style="margin-top:8px"></p>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <footer>© 2025 — Curso de Criptomonedas. No es asesoría financiera.</footer>
+
+  <!-- SCRIPTS -->
+  <script>
+    // Configuration
+    const MODULE_PASS = 7;      // >=7/10 to pass a module
+    const FINAL_PASS = 14;      // >=14/20 to pass final
+    const TIMER_MINUTES = 15;
+
+    // Questions for modules (10 each)
+    const MODULE1 = [
+      {q:"¿Qué es una criptomoneda?", opts:["Activo digital basado en blockchain","Dinero físico del banco"], correct:0},
+      {q:"¿Qué elemento usa blockchain para enlazar datos?", opts:["Bloques enlazados","Cables de red"], correct:0},
+      {q:"Ejemplo real de criptomoneda:", opts:["Bitcoin","MoneyPlus 3000"], correct:0},
+      {q:"¿Quién controla Bitcoin?", opts:["Ninguna, es descentralizado","El Banco Mundial"], correct:0},
+      {q:"¿Qué garantiza la seguridad del blockchain?", opts:["Criptografía","Contraseñas simples"], correct:0},
+      {q:"¿Qué es la minería?", opts:["Validar transacciones","Extraer oro digital"], correct:0},
+      {q:"Riesgo de invertir:", opts:["Alta volatilidad","Garantías"], correct:0},
+      {q:"Qué determina el precio:", opts:["Oferta y demanda","Precio fijo anual"], correct:0},
+      {q:"Cripto legítima suele tener:", opts:["Código abierto y comunidad","Promesas de duplicar dinero"], correct:0},
+      {q:"Qué es un exchange?", opts:["Plataforma para comprar y vender criptos","Una billetera física"], correct:0},
+    ];
+
+    const MODULE2 = [
+      {q:"Señal de estafa común:", opts:["Promesas de ganancias garantizadas","Opiniones imparciales"], correct:0},
+      {q:"Qué hacer ante presión para invertir:", opts:["No ceder y verificar","Invertir rápido"], correct:0},
+      {q:"Método que usan estafadores:", opts:["Esquemas Ponzi","Minado legítimo"], correct:0},
+      {q:"Persona que pide controlar tu PC:", opts:["Probable estafa","Soporte oficial siempre"], correct:0},
+      {q:"App que no permite retirar:", opts:["Posible fraude","Plataforma en mantenimiento"], correct:0},
+      {q:"Ofertas con referencias masivas:", opts:["Sensibles a revisión exhaustiva","Siempre confiables"], correct:0},
+      {q:"Comprar por redes sociales:", opts:["Riesgo alto, investigar","Siempre seguro"], correct:0},
+      {q:"Documentación de empresa falsa:", opts:["Señal de estafa","Prueba de seguridad"], correct:0},
+      {q:"Promesas de retorno fijo alto:", opts:["Muy sospechoso","Normal en inversiones"], correct:0},
+      {q:"Qué hacer si sospechas estafa:", opts:["Denunciar y no enviar más dinero","Seguir invirtiendo"], correct:0},
+    ];
+
+    const MODULE3 = [
+      {q:"Qué es una wallet?", opts:["Software o dispositivo para guardar criptos","Tarjeta de débito"], correct:0},
+      {q:"Qué es seed/semilla?", opts:["Frase para recuperar tu wallet","Contraseña pública"], correct:0},
+      {q:"Qué es 2FA?", opts:["Autenticación en dos pasos","Tipo de wallet"], correct:0},
+      {q:"Dónde no guardar claves?", opts:["Mensajería sin cifrar","Cartera fría"], correct:0},
+      {q:"Cold wallet es:", opts:["Wallet desconectada de internet","Wallet móvil"], correct:0},
+      {q:"Qué es social engineering?", opts:["Engaño humano para robar credenciales","Minería distribuida"], correct:0},
+      {q:"Comprobar URL del sitio:", opts:["Sí, antes de ingresar datos","No es necesario"], correct:0},
+      {q:"Actualizar software:", opts:["Reduce riesgos","No tiene efecto"], correct:0},
+      {q:"Verificar contrato inteligente:", opts:["Importante para tokens nuevos","Siempre innecesario"], correct:0},
+      {q:"Probar con poco dinero primero:", opts:["Buena práctica","Siempre malo"], correct:0},
+    ];
+
+    // Final exam (20 questions) combined or new questions (we'll combine module questions + extras)
+    const FINAL = [
+      // include module questions + extras to reach 20
+      ...MODULE1,
+      ...MODULE2,
+      ...MODULE3,
+      //  - that's 30 items; to keep 20, we'll pick the 20 most important:
+    ].slice(0,20).map(item=>({q:item.q, opts:item.opts, correct:item.correct}));
+
+    // State
+    let state = {
+      name:'', email:'', age:'', completed:[], moduleScores:{1:null,2:null,3:null}, examScore:null, examTaken:false
+    };
+
+    // Timer for final
+    let examTimer = null;
+    let timeRemaining = 0;
+
+    // Init
+    (function init(){
+      const u = localStorage.getItem('curso_user');
+      if(u){
+        const user = JSON.parse(u);
+        state.name = user.name; state.email = user.email; state.age = user.age;
+        document.getElementById('nombre').value = user.name; document.getElementById('correo').value = user.email; document.getElementById('edad').value = user.age;
+        document.getElementById('modulosArea').classList.remove('hidden');
+      }
+      const s = localStorage.getItem('curso_state');
+      if(s){
+        const st = JSON.parse(s);
+        state = {...state, ...st};
+      }
+      updateDashboard();
+      buildModuleQuestions(1, MODULE1, 'mod1Questions');
+      buildModuleQuestions(2, MODULE2, 'mod2Questions');
+      buildModuleQuestions(3, MODULE3, 'mod3Questions');
+      buildFinalExam();
+      refreshModuleCards();
+    })();
+
+    function guardarRegistro(){
+      const n = document.getElementById('nombre').value.trim();
+      const e = document.getElementById('correo').value.trim();
+      const a = document.getElementById('edad').value;
+      if(!n || !e || !a){ alert('Completa nombre, correo y edad'); return; }
+      state.name = n; state.email = e; state.age = a;
+      localStorage.setItem('curso_user', JSON.stringify({name:n,email:e,age:a}));
+      saveState();
+      document.getElementById('modulosArea').classList.remove('hidden');
+      updateDashboard();
+      alert('Datos guardados. ¡Bienvenido '+n+'!');
+    }
+    function cargarRegistro(){
+      const u = localStorage.getItem('curso_user');
+      if(!u){ alert('No hay datos guardados'); return; }
+      const user = JSON.parse(u);
+      document.getElementById('nombre').value = user.name;
+      document.getElementById('correo').value = user.email;
+      document.getElementById('edad').value = user.age;
+      state.name = user.name; state.email = user.email; state.age = user.age;
+      document.getElementById('modulosArea').classList.remove('hidden');
+      updateDashboard();
+    }
+    function borrarDatos(){
+      if(confirm('Borrar datos guardados en este navegador?')){
+        localStorage.removeItem('curso_user'); localStorage.removeItem('curso_state');
+        state = { name:'', email:'', age:'', completed:[], moduleScores:{1:null,2:null,3:null}, examScore:null, examTaken:false };
+        document.getElementById('nombre').value=''; document.getElementById('correo').value=''; document.getElementById('edad').value='';
+        updateDashboard(); document.getElementById('modulosArea').classList.add('hidden');
+        refreshModuleCards();
+        alert('Datos borrados.');
+      }
+    }
+
+    function saveState(){
+      localStorage.setItem('curso_state', JSON.stringify({
+        completed: state.completed,
+        moduleScores: state.moduleScores,
+        examScore: state.examScore,
+        examTaken: state.examTaken
+      }));
+      updateDashboard();
+      refreshModuleCards();
+    }
+
+    function updateDashboard(){
+      document.getElementById('dashName').innerText = state.name || '-';
+      document.getElementById('dashEmail').innerText = state.email || '-';
+      document.getElementById('dashAge').innerText = state.age || '-';
+      document.getElementById('completedCount').innerText = (state.completed || []).length;
+      document.getElementById('examState').innerText = state.examTaken ? (state.examScore + '/' + FINAL.length) : 'No realizado';
+      const pct = Math.round(((state.completed || []).length / 3) * 100);
+      document.getElementById('progressBar').style.width = pct + '%';
+      document.getElementById('progressPct').innerText = pct + '%';
+    }
+
+    // Navigation
+    function openModule(id){
+      // hide all
+      ['inicioCard','mod1Card','mod2Card','mod3Card','finalCard'].forEach(x=>{
+        const el = document.getElementById(x);
+        if(el) el.classList.add('hidden');
+      });
+      if(id === 0) document.getElementById('inicioCard').classList.remove('hidden');
+      else if(id === 1) document.getElementById('mod1Card').classList.remove('hidden');
+      else if(id === 2) {
+        if(!state.completed.includes(1) && state.moduleScores[1] !== null && state.moduleScores[1] < MODULE_PASS){
+          alert('Debes aprobar el Módulo 1 (≥ '+MODULE_PASS+'/10) para acceder al Módulo 2.');
+          return;
+        }
+        document.getElementById('mod2Card').classList.remove('hidden');
+      }
+      else if(id === 3){
+        if(!state.completed.includes(2) && state.moduleScores[2] !== null && state.moduleScores[2] < MODULE_PASS){
+          alert('Debes aprobar el Módulo 2 (≥ '+MODULE_PASS+'/10) para acceder al Módulo 3.');
+          return;
+        }
+        document.getElementById('mod3Card').classList.remove('hidden');
+      }
+      else if(id === 'final'){
+        if((state.moduleScores[1]===null || state.moduleScores[1] < MODULE_PASS) || (state.moduleScores[2]===null || state.moduleScores[2] < MODULE_PASS) || (state.moduleScores[3]===null || state.moduleScores[3] < MODULE_PASS)){
+          if(!confirm('No has aprobado todos los módulos. ¿Deseas presentar el examen final igualmente?')) return;
+        }
+        document.getElementById('finalCard').classList.remove('hidden');
+        // start timer if enabled
+        if(document.getElementById('enableTimer').checked) startFinalTimer();
+      }
+      window.scrollTo({top:0,behavior:'smooth'});
+    }
+
+    function volverInicio(){ openModule(0); }
+
+    // Build module question blocks
+    function buildModuleQuestions(modNumber, arr, containerId){
+      const area = document.getElementById(containerId);
+      area.innerHTML = '';
+      arr.forEach((item, idx)=>{
+        const div = document.createElement('div'); div.className = 'question';
+        const p = document.createElement('p'); p.innerHTML = '<strong>' + (idx+1) + ')</strong> ' + item.q;
+        div.appendChild(p);
+        item.opts.forEach((opt, j)=>{
+          const label = document.createElement('label'); label.style.display='block';
+          const inp = document.createElement('input'); inp.type='radio'; inp.name = 'm' + modNumber + '_' + idx; inp.value = (j===item.correct)?'correcto':'incorrecto';
+          label.appendChild(inp); label.appendChild(document.createTextNode(' ' + opt));
+          div.appendChild(label);
+        });
+        const resP = document.createElement('p'); resP.id = 'm' + modNumber + 'res' + idx; resP.className = 'result';
+        div.appendChild(resP);
+        area.appendChild(div);
+      });
+    }
+
+    // Evaluate module: calculate score, show result, mark as completed if >= MODULE_PASS
+    function evaluarModulo(modNumber){
+      const prefix = 'm' + modNumber + '_';
+      const questions = (modNumber === 1) ? MODULE1 : (modNumber === 2 ? MODULE2 : MODULE3);
+      let score = 0;
+      for(let i=0;i<questions.length;i++){
+        const opts = document.getElementsByName(prefix + i);
+        let answered = false;
+        for(const o of opts){ if(o.checked){ answered = true; if(o.value==='correcto') score++; } }
+        // show immediate feedback per question
+        const resEl = document.getElementById('m' + modNumber + 'res' + i);
+        if(!answered){ resEl.innerText = 'No respondida.'; resEl.className='result wrong'; }
+        else {
+          // find selected
+          for(const o of opts){ if(o.checked){ if(o.value==='correcto'){ resEl.innerText='✔ Correcto'; resEl.className='result correct'; } else { resEl.innerText='✘ Incorrecto'; resEl.className='result wrong'; } } }
+        }
+      }
+      // save score
+      state.moduleScores[modNumber] = score;
+      // mark completed if pass
+      if(score >= MODULE_PASS){
+        if(!state.completed.includes(modNumber)) state.completed.push(modNumber);
+        saveState();
+        document.getElementById('mod' + modNumber + 'Result').innerHTML = 'Nota: ' + score + '/10 — <span style="color:green;font-weight:700">Aprobado</span>';
+      } else {
+        document.getElementById('mod' + modNumber + 'Result').innerHTML = 'Nota: ' + score + '/10 — <span style="color:red;font-weight:700">No aprobado</span>';
+      }
+      updateDashboard();
+      refreshModuleCards();
+      window.scrollTo({top:0,behavior:'smooth'});
+    }
+
+    // mark module as completed manually (if teacher wants)
+    function marcarModulo(n){
+      if(!state.completed.includes(n)) state.completed.push(n);
+      saveState();
+      alert('Módulo ' + n + ' marcado como completado.');
+    }
+
+    // Build Final Exam
+    function buildFinalExam(){
+      const area = document.getElementById('examArea');
+      area.innerHTML = '';
+      FINAL.forEach((item, idx)=>{
+        const div = document.createElement('div'); div.className='question';
+        const p = document.createElement('p'); p.innerHTML = '<strong>' + (idx+1) + ')</strong> ' + item.q;
+        div.appendChild(p);
+        item.opts.forEach((opt, j)=>{
+          const label = document.createElement('label'); label.style.display='block';
+          const inp = document.createElement('input'); inp.type='radio'; inp.name = 'f' + idx; inp.value = (j===item.correct)?'correcto':'incorrecto';
+          label.appendChild(inp); label.appendChild(document.createTextNode(' ' + opt));
+          div.appendChild(label);
+        });
+        area.appendChild(div);
+      });
+    }
+
+    // Final exam scoring
+    function calcularFinal(){
+      // stop timer if running
+      stopFinalTimer();
+      let score = 0;
+      for(let i=0;i<FINAL.length;i++){
+        const opts = document.getElementsByName('f' + i);
+        for(const o of opts) if(o.checked && o.value === 'correcto') score++;
+      }
+      state.examScore = score; state.examTaken = true;
+      saveState();
+      const fs = document.getElementById('finalScore');
+      fs.innerHTML = 'Tu nota: <strong>' + score + '/' + FINAL.length + '</strong>';
+      if(score >= FINAL_PASS){
+        fs.innerHTML += ' <span style="color:green;font-weight:700">¡Aprobaste!</span>';
+        document.getElementById('downloadCertBtn').style.display = 'inline-block';
+      } else {
+        fs.innerHTML += ' <span style="color:red;font-weight:700">No aprobaste.</span>';
+        document.getElementById('downloadCertBtn').style.display = 'none';
+      }
+      updateDashboard();
+      maybeAutoSend();
+      fs.scrollIntoView({behavior:'smooth'});
+    }
+
+    function resetExam(){
+      for(let i=0;i<FINAL.length;i++){
+        const opts = document.getElementsByName('f' + i);
+        for(const o of opts) o.checked = false;
+      }
+      document.getElementById('finalScore').innerText = '';
+      document.getElementById('downloadCertBtn').style.display = 'none';
+      stopFinalTimer();
+      document.getElementById('timerDisplay').innerText = '--:--';
+    }
+
+    // Timer for final
+    function startFinalTimer(){
+      if(examTimer) return;
+      timeRemaining = TIMER_MINUTES * 60;
+      document.getElementById('timerDisplay').innerText = formatTime(timeRemaining);
+      examTimer = setInterval(()=>{
+        timeRemaining--;
+        document.getElementById('timerDisplay').innerText = formatTime(timeRemaining);
+        if(timeRemaining <= 0){
+          clearInterval(examTimer);
+          examTimer = null;
+          alert('Tiempo agotado. Se enviará el examen con las respuestas marcadas.');
+          calcularFinal();
+        }
+      },1000);
+    }
+    function stopFinalTimer(){ if(examTimer){ clearInterval(examTimer); examTimer = null; } }
+    function formatTime(sec){ const m=Math.floor(sec/60).toString().padStart(2,'0'); const s=(sec%60).toString().padStart(2,'0'); return m+':'+s; }
+
+    // Certificate generation using jsPDF
+    async function generarCertificado(){
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF({unit:'pt',format:'a4'});
+      const nombre = state.name || document.getElementById('nombre').value || 'Estudiante';
+      const correo = state.email || document.getElementById('correo').value || '';
+      const nota = state.examScore || 0;
+      const fecha = new Date().toLocaleDateString();
+
+      // header background
+      doc.setFillColor(11,64,156);
+      doc.rect(0,0,595,90,'F');
+      doc.setTextColor(255,255,255);
+      doc.setFontSize(20);
+      doc.text('Certificado de Finalización', 40, 60);
+
+      doc.setTextColor(0,0,0);
+      doc.setFontSize(14);
+      doc.text('Otorgado a:', 40, 120);
+      doc.setFontSize(18);
+      doc.text(nombre, 40, 150);
+      doc.setFontSize(12);
+      doc.text('Correo: ' + correo, 40, 180);
+      doc.text('Curso: Criptomonedas — ¿Realidad o Estafa?', 40, 200);
+      doc.text('Puntuación: ' + nota + ' / ' + FINAL.length, 40, 220);
+      doc.text('Fecha: ' + fecha, 40, 240);
+      doc.setFontSize(10);
+      doc.text('No es asesoría financiera. Proyecto educativo.', 40, 520);
+
+      doc.save('Certificado_' + nombre.replace(/\s+/g,'_') + '.pdf');
+    }
+
+    // Google Sheets integration (optional)
+    function saveSheetUrl(){
+      const u = document.getElementById('sheetUrl').value.trim();
+      if(!u){ alert('Pega la URL del WebApp de Google Apps Script'); return; }
+      localStorage.setItem('sheet_url', u);
+      document.getElementById('sheetMsg').innerText = 'URL guardada.';
+    }
+    async function sendToSheet(){
+      const url = localStorage.getItem('sheet_url');
+      if(!url){ alert('No hay URL guardada'); return; }
+      const payload = { name: state.name, email: state.email, age: state.age, score: state.examScore || '', date: new Date().toISOString(), completed: state.completed.join(',') };
+      try{
+        const res = await fetch(url, { method:'POST', body: JSON.stringify(payload), headers: {'Content-Type':'application/json'} });
+        if(res.ok) document.getElementById('sheetMsg').innerText = 'Enviado correctamente.';
+        else document.getElementById('sheetMsg').innerText = 'Error al enviar.';
+      }catch(e){ document.getElementById('sheetMsg').innerText = 'Error de red.'; }
+    }
+    function maybeAutoSend(){ const url = localStorage.getItem('sheet_url'); if(url) sendToSheet(); }
+
+    function irAlExamen(){ openModule('final'); }
+    function continuarDondeQuede(){
+      const done = state.completed || [];
+      if(done.length === 0) openModule(1);
+      else {
+        for(let i=1;i<=3;i++){
+          if(!done.includes(i)){ openModule(i); return; }
+        }
+        openModule('final');
+      }
+    }
+
+    // Show/hide module cards based on progress
+    function refreshModuleCards(){
+      // Enable/disable module 2 and 3 buttons visually
+      const btn2 = document.querySelector('#cardMod2 .btn');
+      const btn3 = document.querySelector('#cardMod3 .btn');
+      if(state.moduleScores[1] !== null && state.moduleScores[1] >= MODULE_PASS){
+        btn2.disabled = false; btn2.classList.remove('secondary');
+      } else {
+        btn2.disabled = false; // still clickable - logic blocks access in openModule
+      }
+      // update labels with scores if available
+      ['cardMod1','cardMod2','cardMod3'].forEach((id, idx)=>{
+        const mod = idx+1;
+        const card = document.getElementById(id);
+        if(!card) return;
+        let info = card.querySelector('.small');
+        if(state.moduleScores[mod] !== null){
+          info.innerText = 'Puntuación: ' + state.moduleScores[mod] + '/10';
+        }
+      });
+      updateDashboard();
+    }
+
+    // Utility: expose in console
+    window.generarCertificado = generarCertificado;
+    window.openModule = openModule;
+    window.marcarModulo = marcarModulo;
+    window.evaluarModulo = evaluarModulo;
+    window.calcularFinal = calcularFinal;
+  </script>
+</body>
+</html>
