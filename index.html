@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Curso de Criptomonedas</title>
+  <style>
+    body { margin: 0; background: #f4f7fb; font-family: Arial, sans-serif; color: #222; }
+    header { background: linear-gradient(90deg, #0b409c, #0e5bbf); padding: 40px; text-align: center; color: white; }
+    h1 { margin: 0; font-size: 32px; }
+    .contenedor { max-width: 900px; margin: 30px auto; padding: 20px; background: white; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+    .boton { display: inline-block; background: #0e5bbf; color: white; padding: 12px 18px; text-decoration: none; border-radius: 8px; margin: 10px 0; cursor: pointer; }
+    .boton:hover { background: #08397a; }
+    .modulo { margin: 30px 0; padding: 20px; background: #eef2ff; border-radius: 10px; }
+    iframe { width: 100%; height: 315px; border: none; border-radius: 8px; margin-bottom: 10px; }
+    .pregunta { margin-bottom: 20px; padding: 15px; background: #fff; border-radius: 8px; border: 1px solid #ddd; }
+    footer { background: #0b409c; color: white; text-align: center; padding: 15px; margin-top: 40px; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Curso de Criptomonedas</h1>
+    <p>Aprende, reconoce estafas y protégete</p>
+  </header>
+
+  <div class="contenedor" id="inicio">
+    <h2>Registro del estudiante</h2>
+    <label>Nombre:</label><br>
+    <input id="nombre" type="text" style="width:100%;padding:8px;margin:5px 0"><br>
+
+    <label>Correo:</label><br>
+    <input id="correo" type="email" style="width:100%;padding:8px;margin:5px 0"><br>
+
+    <label>Edad:</label><br>
+    <input id="edad" type="number" min="12" style="width:100%;padding:8px;margin:5px 0"><br>
+
+    <button class="boton" onclick="validarRegistro()">Guardar y mostrar módulos</button>
+
+    <div id="modulos" style="display:none;margin-top:20px;">
+      <h2>Selecciona un módulo:</h2>
+      <a class="boton" href="#mod1">Módulo 1</a><br>
+      <a class="boton" href="#mod2">Módulo 2</a><br>
+      <a class="boton" href="#mod3">Módulo 3</a><br>
+      <a class="boton" href="#examenFinal">Examen Final</a>
+    </div>
+  </div>
+
+  <!-- MÓDULO 1 -->
+  <div class="contenedor modulo" id="mod1">
+    <h2>Módulo 1: ¿Qué son las criptomonedas?</h2>
+
+    <iframe src="https://www.youtube.com/embed/fXajsTkudb0"></iframe>
+
+    <h3>Conceptos clave</h3>
+    <ul>
+      <li>Criptomoneda = Activo digital</li>
+      <li>Blockchain = Base de datos descentralizada</li>
+      <li>Volatilidad = Cambios bruscos en el precio</li>
+      <li>Bitcoin = Primera criptomoneda</li>
+      <li>Transacciones peer-to-peer</li>
+      <li>Descentralización</li>
+      <li>Tokens</li>
+      <li>Contratos inteligentes</li>
+      <li>Minería</li>
+      <li>Nodos</li>
+    </ul>
+
+    <button class="boton" onclick="evaluarModulo('m1')">Evaluar módulo 1</button>
+    <div id="m1Preguntas"></div>
+  </div>
+
+  <!-- MÓDULO 2 -->
+  <div class="contenedor modulo" id="mod2">
+    <h2>Módulo 2: Prevención de estafas</h2>
+
+    <iframe src="https://www.youtube.com/embed/8ZQ7-qCWTrE"></iframe>
+
+    <h3>Conceptos clave</h3>
+    <ul>
+      <li>No existen ganancias garantizadas</li>
+      <li>Verifica siempre la plataforma</li>
+      <li>No compartas datos personales</li>
+      <li>Estafas Ponzi</li>
+      <li>Phishing</li>
+      <li>Falsos soportes técnicos</li>
+      <li>Promesas de duplicar dinero</li>
+      <li>Apps falsas</li>
+      <li>Robos de identidad</li>
+      <li>Fraudes en redes sociales</li>
+    </ul>
+
+    <button class="boton" onclick="evaluarModulo('m2')">Evaluar módulo 2</button>
+    <div id="m2Preguntas"></div>
+  </div>
+
+  <!-- MÓDULO 3 -->
+  <div class="contenedor modulo" id="mod3">
+    <h2>Módulo 3: Uso seguro</h2>
+
+    <iframe src="https://www.youtube.com/embed/SSo_EIwHSd4"></iframe>
+
+    <h3>Conceptos clave</h3>
+    <ul>
+      <li>Claves privadas</li>
+      <li>Billeteras frías</li>
+      <li>AUTENTICACIÓN 2FA</li>
+      <li>Verificación de enlaces</li>
+      <li>Backups seguros</li>
+      <li>Correos fraudulentos</li>
+      <li>Protección contra malware</li>
+      <li>Evitar redes públicas</li>
+      <li>Firmas digitales</li>
+      <li>Seguridad en exchanges</li>
+    </ul>
+
+    <button class="boton" onclick="evaluarModulo('m3')">Evaluar módulo 3</button>
+    <div id="m3Preguntas"></div>
+  </div>
+
+  <!-- EXAMEN FINAL -->
+  <div class="contenedor modulo" id="examenFinal">
+    <h2>Examen Final</h2>
+
+    <div id="finalQuestions">
+      <div class="pregunta"><p>1. ¿Qué es una criptomoneda?</p>
+        <input type="radio" name="p1" value="1"> Dinero digital basado en criptografía<br>
+        <input type="radio" name="p1" value="0"> Moneda física<br>
+      </div>
+
+      <div class="pregunta"><p>2. ¿Qué es el blockchain?</p>
+        <input type="radio" name="p2" value="1"> Una base de datos distribuida<br>
+        <input type="radio" name="p2" value="0"> Un archivo en Excel<br>
+      </div>
+
+      <div class="pregunta"><p>3. ¿Qué es una estafa Ponzi?</p>
+        <input type="radio" name="p3" value="1"> Pagar a usuarios antiguos con dinero de nuevos<br>
+        <input type="radio" name="p3" value="0"> Minería de criptos<br>
+      </div>
+
+      <div class="pregunta"><p>4. ¿Qué es una billetera fría?</p>
+        <input type="radio" name="p4" value="1"> Una wallet fuera de línea<br>
+        <input type="radio" name="p4" value="0"> Una app del celular<br>
+      </div>
+
+      <div class="pregunta"><p>5. ¿Qué significa 2FA?</p>
+        <input type="radio" name="p5" value="1"> Autenticación de dos factores<br>
+        <input type="radio" name="p5" value="0"> Pago automático<br>
+      </div>
+
+      <div class="pregunta"><p>6. ¿Qué es volatilidad?</p>
+        <input type="radio" name="p6" value="1"> Cambios bruscos en el precio<br>
+        <input type="radio" name="p6" value="0"> Precio estable<br>
+      </div>
+
+      <div class="pregunta"><p>7. ¿Qué es phishing?</p>
+        <input type="radio" name="p7" value="1"> Robo de datos mediante enlaces falsos<br>
+        <input type="radio" name="p7" value="0"> Una criptomoneda nueva<br>
+      </div>
+
+      <div class="pregunta"><p>8. ¿Qué es una clave privada?</p>
+        <input type="radio" name="p8" value="1"> Tu acceso único a tu wallet<br>
+        <input type="radio" name="p8" value="0"> Un número público<br>
+      </div>
+
+      <div class="pregunta"><p>9. ¿Qué es un contrato inteligente?</p>
+        <input type="radio" name="p9" value="1"> Código que ejecuta reglas automáticamente<br>
+        <input type="radio" name="p9" value="0"> Un contrato en papel<br>
+      </div>
+
+      <div class="pregunta"><p>10. ¿Qué es una red descentralizada?</p>
+        <input type="radio" name="p10" value="1"> Una red sin un control central<br>
+        <input type="radio" name="p10" value="0"> Una red de un solo servidor<br>
+      </div>
+    </div>
+
+      <div class="pregunta"><p>2. ¿Qué es el blockchain?</p>
+        <input type="radio" name="p2" value="1"> Una base de datos distribuida<br>
+        <input type="radio" name="p2" value="0"> Un banco tradicional<br>
+      </div>
+
+      <div class="pregunta"><p>3. ¿Qué es una estafa Ponzi?</p>
+        <input type="radio" name="p3" value="1"> Pagar a usuarios antiguos con dinero de nuevos<br>
+        <input type="radio" name="p3" value="0"> Un método legal de inversión<br>
+      </div>
+
+      <div class="pregunta"><p>4. ¿Qué es una billetera fría?</p>
+        <input type="radio" name="p4" value="1"> Una wallet fuera de línea<br>
+        <input type="radio" name="p4" value="0"> Una app móvil<br>
+      </div>
+
+      <div class="pregunta"><p>5. ¿Qué significa 2FA?</p>
+        <input type="radio" name="p5" value="1"> Autenticación de dos factores<br>
+        <input type="radio" name="p5" value="0"> Otro tipo de criptomoneda<br>
+      </div>
+    </div>
+
+    <button class="boton" onclick="calcularFinal()">Enviar Examen</button>
+    <p id="finalScore"></p>
+    <button id="certificadoBtn" class="boton" style="display:none;" onclick="generarCertificado()">Descargar certificado</button>
+  </div>
+
+  <footer>© 2025 – Curso de Criptomonedas</footer>
+
+<script>
+function validarRegistro(){
+  let n=document.getElementById('nombre').value.trim();
+  let c=document.getElementById('correo').value.trim();
+  let e=document.getElementById('edad').value;
+  if(n===''||c===''||e===''){ alert('Completa todos los campos'); return; }
+  document.getElementById('modulos').style.display='block';
+}
+
+function evaluarModulo(mod){
+  let cont=document.getElementById(mod+'Preguntas');
+  cont.innerHTML="<p>Respuestas registradas ✔</p>";
+}
+
+function calcularFinal(){
+  let total = 10;
+  let puntos = 0;
+  for(let i=1;i<=10;i++){
+    let r = document.querySelector(`input[name=p${i}]:checked`);
+    if(r) puntos += parseInt(r.value);
+  }
+
+  let nota = (puntos / total) * 10;
+  document.getElementById('finalScore').innerHTML = `Tu nota es: ${nota.toFixed(1)}`;
+
+  if(nota >= 7){ document.getElementById('certificadoBtn').style.display='inline-block'; }
+  else { alert('Debes obtener al menos 7 para aprobar.'); }
+}
+function generarCertificado(){
+  const nombre = document.getElementById('nombre').value;
+  const correo = document.getElementById('correo').value;
+  const fecha = new Date().toLocaleDateString();
+
+  const contenido = `Certificado de Aprobación
+
+Se certifica que ${nombre} (${correo}) aprobó el Curso de Criptomonedas el día ${fecha}.`;
+
+  const blob = new Blob([contenido], { type: 'text/plain' });
+  const url = URL.createObjectURL(blob);
+
+  const link = document.createElement('a');
+  link.href = url;
+  link.download = 'certificado.txt';
+  link.click();
+}
+
+function calcularFinal(){
+  let total = 5;
+  let puntos = 0;
+  for(let i=1;i<=5;i++){
+    let r = document.querySelector(`input[name=p${i}]:checked`);
+    if(r) puntos += parseInt(r.value);
+  }
+
+  let nota = (puntos / total) * 10;
+  document.getElementById('finalScore').innerHTML = `Tu nota es: ${nota.toFixed(1)}`;
+
+  if(nota >= 7){ document.getElementById('certificadoBtn').style.display='inline-block'; }
+  else { alert('Debes obtener al menos 7 para aprobar.'); }
+}
+
+</script>
+
+</body>
+</html>
