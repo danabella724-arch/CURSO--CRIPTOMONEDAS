@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Curso de Criptomonedas – ¿Realidad o Estafa?</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #f4f7fb;
+            color: #222;
+        }
+
+        header {
+            background: linear-gradient(90deg, #0b409c, #0e5bbf);
+            padding: 25px;
+            text-align: center;
+            color: white;
+        }
+
+        nav {
+            background: #fff;
+            padding: 12px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
+
+        nav a {
+            margin: 0 12px;
+            text-decoration: none;
+            color: #0b409c;
+            font-weight: bold;
+        }
+
+        .contenedor {
+            max-width: 900px;
+            margin: 30px auto;
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 12px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            color: #0b409c;
+        }
+
+        .pregunta {
+            margin-bottom: 20px;
+            padding: 10px;
+            background: #eef2ff;
+            border-radius: 8px;
+        }
+
+        .resultado {
+            font-weight: bold;
+            margin-top: 8px;
+        }
+
+        .correcto { color: green; }
+        .incorrecto { color: red; }
+
+        .video {
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        footer {
+            background: #0b409c;
+            padding: 15px;
+            text-align: center;
+            color: white;
+            margin-top: 40px;
+        }
+
+        button {
+            background-color: #0e5bbf;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #08397a;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>Curso de Criptomonedas</h1>
+    <p>¿Realidad o Estafa?</p>
+</header>
+
+<nav>
+    <a href="#intro">Introducción</a>
+    <a href="#mod1">Módulo 1</a>
+    <a href="#mod2">Módulo 2</a>
+    <a href="#mod3">Módulo 3</a>
+    <a href="#quiz">Test</a>
+</nav>
+
+<div class="contenedor">
+
+    <section id="intro">
+        <h2>Introducción</h2>
+        <p>Bienvenido al curso básico de criptomonedas. Aquí aprenderás cómo funcionan, sus riesgos, y cómo evitar estafas.</p>
+        
+        <div class="video">
+            <h3>Video introductorio</h3>
+            <iframe width="100%" height="315" 
+            src="https://www.youtube.com/embed/8u0pEOxY6z8" 
+            frameborder="0" allowfullscreen></iframe>
+        </div>
+    </section>
+
+    <hr>
+
+    <section id="mod1">
+        <h2>Módulo 1: ¿Qué son las criptomonedas?</h2>
+        <p>Las criptomonedas son activos digitales que funcionan mediante tecnología blockchain…</p>
+
+        <div class="video">
+            <h3>Video sobre blockchain</h3>
+            <iframe width="100%" height="315" 
+            src="https://www.youtube.com/embed/SSo_EIwHSd4" 
+            frameborder="0" allowfullscreen></iframe>
+        </div>
+    </section>
+
+    <hr>
+
+    <section id="mod2">
+        <h2>Módulo 2: Estafas comunes en criptomonedas</h2>
+        <p>Aprende a identificar fraudes como:</p>
+        <ul>
+            <li>Esquemas Ponzi</li>
+            <li>Plataformas falsas</li>
+            <li>Influencers pagados</li>
+        </ul>
+    </section>
+
+    <hr>
+
+    <section id="mod3">
+        <h2>Módulo 3: Uso seguro</h2>
+        <p>Buenas prácticas para no perder dinero:</p>
+        <ul>
+            <li>Usar billeteras seguras</li>
+            <li>No compartir tus claves</li>
+            <li>Desconfiar de “ganancias garantizadas”</li>
+        </ul>
+    </section>
+
+    <hr>
+
+    <section id="quiz">
+        <h2>Test del Curso</h2>
+
+        <div class="pregunta">
+            <p>1. ¿Qué es una criptomoneda?</p>
+            <input type="radio" name="p1" value="correcto"> Un activo digital basado en blockchain<br>
+            <input type="radio" name="p1" value="incorrecto"> Dinero físico del banco<br>
+            <p id="r1" class="resultado"></p>
+        </div>
+
+        <div class="pregunta">
+            <p>2. ¿Cuál es una señal de estafa?</p>
+            <input type="radio" name="p2" value="incorrecto"> Bajas comisiones<br>
+            <input type="radio" name="p2" value="correcto"> Promesas de ganancias garantizadas<br>
+            <p id="r2" class="resultado"></p>
+        </div>
+
+        <button onclick="verResultados()">Ver resultados</button>
+
+    </section>
+
+</div>
+
+<footer>
+    © 2025 – Curso educativo de criptomonedas
+</footer>
+
+<script>
+function verResultados() {
+    evaluarPregunta('p1', 'r1');
+    evaluarPregunta('p2', 'r2');
+}
+
+function evaluarPregunta(nombre, idResultado) {
+    const opciones = document.getElementsByName(nombre);
+    let resultado = document.getElementById(idResultado);
+
+    for (let op of opciones) {
+        if (op.checked) {
+            if (op.value === "correcto") {
+                resultado.innerHTML = "✔ Respuesta correcta";
+                resultado.className = "resultado correcto";
+            } else {
+                resultado.innerHTML = "✘ Respuesta incorrecta";
+                resultado.className = "resultado incorrecto";
+            }
+        }
+    }
+}
+</script>
+
+</body>
+</html>
