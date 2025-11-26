@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Curso de Criptomonedas</title>
+  <style>
+    body { margin: 0; background: #f4f7fb; font-family: Arial, sans-serif; color: #222; }
+    header { background: linear-gradient(90deg, #0b409c, #0e5bbf); padding: 40px; text-align: center; color: white; }
+    h1 { margin: 0; font-size: 32px; }
+    .contenedor { max-width: 900px; margin: 30px auto; padding: 20px; background: white; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+    .boton { display: inline-block; background: #0e5bbf; color: white; padding: 12px 18px; text-decoration: none; border-radius: 8px; margin: 10px 0; }
+    .boton:hover { background: #08397a; }
+    .modulo { margin: 30px 0; padding: 20px; background: #eef2ff; border-radius: 10px; }
+    iframe { width: 100%; height: 315px; border: none; border-radius: 8px; margin-bottom: 10px; }
+    img { width: 100%; border-radius: 8px; margin: 15px 0; }
+    .pregunta { margin-bottom: 20px; padding: 15px; background: #fff; border-radius: 8px; border: 1px solid #ddd; }
+    .resultado { font-weight: bold; margin-top: 5px; }
+    .correcto { color: green; }
+    .incorrecto { color: red; }
+    #finalScore { font-size: 22px; font-weight: bold; margin-top: 20px; }
+    footer { background: #0b409c; color: white; text-align: center; padding: 15px; margin-top: 40px; }
+  </style>
+<style>
+  html { scroll-behavior: smooth; }
+  a.boton { pointer-events: auto; position: relative; z-index: 10; }
+</style>
+</head>
+<body>
+  <header>
+    <h1>Curso de Criptomonedas</h1>
+    <p>Aprende, reconoce estafas y protégete</p>
+  </header>
+
+  <div class="contenedor" id="inicio">
+    <img src="https://i.imgur.com/ZmVJt6T.jpeg" alt="Introducción a las criptomonedas" />
+    <h2>Registro del estudiante</h2>
+    <p>Por favor ingresa tus datos antes de iniciar el curso:</p>
+
+    <label>Nombre:</label><br>
+    <input id="nombre" type="text" style="width:100%;padding:8px;margin:5px 0"><br>
+
+    <label>Correo:</label><br>
+    <input id="correo" type="email" style="width:100%;padding:8px;margin:5px 0"><br>
+
+    <label>Edad:</label><br>
+    <input id="edad" type="number" min="12" style="width:100%;padding:8px;margin:5px 0"><br>
+
+    <button class="boton" onclick="validarRegistro()">Guardar y mostrar módulos</button>
+
+    <div id="modulos" style="display:none;margin-top:20px;">
+      <h2>Selecciona un módulo:</h2>
+      <a class="boton" href="#mod1">Módulo 1</a><br>
+      <a class="boton" href="#mod2">Módulo 2</a><br>
+      <a class="boton" href="#mod3">Módulo 3</a><br>
+      <a class="boton" href="#examenFinal">Examen Final</a>
+    </div>
+  </div>
+
+  <div class="contenedor modulo" id="mod1">
+    <h2>Módulo 1: ¿Qué son las criptomonedas?</h2>
+
+    <iframe src="https://www.youtube.com/embed/6Gu2QMTAkEU"></iframe>
+    <img src="https://i.imgur.com/L2Qw2CQ.jpeg" alt="Ejemplo de blockchain" />
+
+    <h3>Conceptos clave</h3>
+    <ul>
+      <li>Qué es una criptomoneda</li>
+      <li>Cómo funciona blockchain</li>
+      <li>Criptomonedas reales vs estafas</li>
+    </ul>
+
+    <div class="pregunta">
+      <p>1. ¿Qué es una criptomoneda?</p>
+      <input type="radio" name="m1p1" value="correcto"> Activo digital basado en blockchain<br>
+      <input type="radio" name="m1p1" value="incorrecto"> Dinero físico del banco<br>
+      <p id="m1r1"></p>
+    </div>
+    <button class="boton" onclick="evaluarModulo1()">Evaluar módulo 1</button>
+  </div>
+
+  <div class="contenedor modulo" id="mod2">
+    <h2>Módulo 2: Prevención de estafas</h2>
+
+    <iframe src="https://www.youtube.com/embed/uf0R0bBq5Hk"></iframe>
+    <img src="https://i.imgur.com/xQILB3R.jpeg" alt="Prevención de estafas" />
+
+    <h3>Evita caer en fraudes</h3>
+    <ul>
+      <li>No existen ganancias garantizadas</li>
+      <li>No envíes dinero sin verificar</li>
+      <li>Investiga todas las plataformas</li>
+    </ul>
+
+    <div class="pregunta">
+      <p>1. ¿Cuál es una señal clara de estafa?</p>
+      <input type="radio" name="m2p1" value="correcto"> Promesas de ganancias garantizadas<br>
+      <input type="radio" name="m2p1" value="incorrecto"> Plataforma regulada<br>
+      <p id="m2r1"></p>
+    </div>
+    <button class="boton" onclick="evaluarModulo2()">Evaluar módulo 2</button>
+  </div>
+
+  <div class="contenedor modulo" id="mod3">
+    <h2>Módulo 3: Uso seguro</h2>
+
+    <iframe src="https://www.youtube.com/embed/SSo_EIwHSd4"></iframe>
+    <img src="https://i.imgur.com/BXFl4LX.png" alt="Claves privadas" />
+
+    <h3>Consejos de seguridad</h3>
+    <ul>
+      <li>Usar billeteras oficiales</li>
+      <li>No compartir claves privadas</li>
+      <li>Verificar enlaces sospechosos</li>
+    </ul>
+
+    <div class="pregunta">
+      <p>1. ¿Qué debes hacer con tus claves privadas?</p>
+      <input type="radio" name="m3p1" value="correcto"> Mantenerlas en secreto<br>
+      <input type="radio" name="m3p1" value="incorrecto"> Enviarlas a soporte técnico<br>
+      <p id="m3r1"></p>
+    </div>
+    <button class="boton" onclick="evaluarModulo3()">Evaluar módulo 3</button>
+  </div>
+
+  <div class="contenedor modulo" id="examenFinal">
+    <h2>Examen Final</h2>
+    <p>Necesitas 7/10 para aprobar.</p>
+
+    <!-- 10 preguntas -->
+    <!-- (conservamos las preguntas correctas) -->
+    <div class="pregunta"><p>1. ¿Qué tecnología permite que las criptomonedas funcionen?</p>
+      <input type="radio" name="f1" value="correcto"> Blockchain<br>
+      <input type="radio" name="f1" value="incorrecto"> Powerchain<br>
+    </div>
+
+    <div class="pregunta"><p>2. ¿Qué es una señal de estafa?</p>
+      <input type="radio" name="f2" value="correcto"> Ganancias garantizadas<br>
+      <input type="radio" name="f2" value="incorrecto"> Educación gratuita<br>
+    </div>
+
+    <div class="pregunta"><p>3. ¿Qué debes hacer con tus claves privadas?</p>
+      <input type="radio" name="f3" value="correcto"> No compartirlas<br>
+      <input type="radio" name="f3" value="incorrecto"> Guardarlas en WhatsApp<br>
+    </div>
+
+    <div class="pregunta"><p>4. ¿Qué es un monedero digital?</p>
+      <input type="radio" name="f4" value="correcto"> Un software para guardar criptomonedas<br>
+      <input type="radio" name="f4" value="incorrecto"> Una billetera física de cuero<br>
+    </div>
+
+    <div class="pregunta"><p>5. ¿Qué debes verificar antes de invertir?</p>
+      <input type="radio" name="f5" value="correcto"> Regulación y reputación<br>
+      <input type="radio" name="f5" value="incorrecto"> Los colores de la página<br>
+    </div>
+
+    <div class="pregunta"><p>6. ¿Qué es un token?</p>
+      <input type="radio" name="f6" value="correcto"> Un activo digital creado en una blockchain<br>
+      <input type="radio" name="f6" value="incorrecto"> Un cupón de supermercado<br>
+    </div>
+
+    <div class="pregunta"><p>7. ¿Qué significa "HODL"?</p>
+      <input type="radio" name="f7" value="correcto"> Mantener tus criptomonedas a largo plazo<br>
+      <input type="radio" name="f7" value="incorrecto"> Vender rápido<br>
+    </div>
+
+    <div class="pregunta"><p>8. ¿Qué significa una inversión de "alto riesgo"?</p>
+      <input type="radio" name="f8" value="correcto"> Puede generar ganancias o pérdidas grandes<br>
+      <input type="radio" name="f8" value="incorrecto"> Es completamente segura<br>
+    </div>
+
+    <div class="pregunta"><p>9. ¿Qué es una estafa Ponzi?</p>
+      <input type="radio" name="f9" value="correcto"> Pagos con dinero de nuevas víctimas<br>
+      <input type="radio" name="f9" value="incorrecto"> Minado de criptomonedas<br>
+    </div>
+
+    <div class="pregunta"><p>10. ¿Qué debes hacer si una oferta parece demasiado buena?</p>
+      <input type="radio" name="f10" value="correcto"> Desconfiar e investigar<br>
+      <input type="radio" name="f10" value="incorrecto"> Aceptar inmediatamente<br>
+    </div>
+
+    <button class="boton" onclick="calcularFinal()">Enviar Examen</button>
+    <p id="finalScore"></p>
+  </div>
+
+  <footer>© 2025 – Curso de Criptomonedas</footer>>© 2025 – Curso de Criptomonedas</footer>
+
+  <script>
+    function evaluarModulo1(){ evaluar("m1p1","m1r1"); }
+    function evaluarModulo2(){ evaluar("m2p1","m2r1"); }
+    function evaluarModulo3(){ evaluar("m3p1","m3r1"); }
+
+    function evaluar(nombre,resultadoID){
+      let opciones=document.getElementsByName(nombre);
+      let res=document.getElementById(resultadoID);
+      for(let op of opciones){
+        if(op.checked){
+          if(op.value==="correcto"){ res.innerHTML="✔ Correcto"; res.className="resultado correcto"; }
+          else{ res.innerHTML="✘ Incorrecto"; res.className="resultado incorrecto"; }
+        }
+      }
+    }
+
+    function calcularFinal(){
+      let puntaje=0;
+      for(let i=1;i<=3;i++){
+        let pregunta=document.getElementsByName("f"+i);
+        for(let op of pregunta){ if(op.checked && op.value==="correcto"){ puntaje++; }}
+      }
+      let score=document.getElementById("finalScore");
+      score.innerHTML="Tu nota es: "+puntaje+"/10";
+      if(puntaje>=7) score.innerHTML+="<br><span style='color:green'>¡Aprobaste!</span>";
+      else score.innerHTML+="<br><span style='color:red'>No aprobaste, intenta de nuevo.</span>";
+    }
+    function validarRegistro(){
+      let n=document.getElementById('nombre').value.trim();
+      let c=document.getElementById('correo').value.trim();
+      let e=document.getElementById('edad').value;
+
+      if(n==='' || c==='' || e===''){
+        alert('Por favor completa todos los campos');
+        return;
+      }
+
+      document.getElementById('modulos').style.display='block';
+      alert('Datos guardados. ¡Bienvenido '+n+'!');
+    }
+
+    function calcularFinal(){
+      let puntaje=0;
+      for(let i=1;i<=10;i++){
+        let pregunta=document.getElementsByName("f"+i);
+        for(let op of pregunta){ if(op.checked && op.value==="correcto"){ puntaje++; }}
+      }
+      let score=document.getElementById("finalScore");
+      score.innerHTML="Tu nota es: "+puntaje+"/10";
+      if(puntaje>=7) score.innerHTML+="<br><span style='color:green'>¡Aprobaste!</span>";
+      else score.innerHTML+="<br><span style='color:red'>No aprobaste, intenta de nuevo.</span>";
+    }
+  </script>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script>
+    // Generar certificado PDF
+    async function generarCertificado(nombre, puntaje){
+      const {{ jsPDF }} = window.jspdf;
+      const pdf = new jsPDF();
+      pdf.setFontSize(22);
+      pdf.text("CERTIFICADO DE APROBACIÓN", 40, 40);
+      pdf.setFontSize(16);
+      pdf.text("Se certifica que:", 20, 70);
+      pdf.setFontSize(18);
+      pdf.text(nombre, 20, 90);
+      pdf.setFontSize(14);
+      pdf.text(`Ha aprobado el curso con ${puntaje}/10 puntos.`, 20, 110);
+      pdf.text(`Fecha: ${new Date().toLocaleDateString()}`, 20, 130);
+      pdf.save(`Certificado_${nombre}.pdf`);
+    }
+
+    // Modificar cálculo final para activar certificado
+    function calcularFinal(){
+      let puntaje = 0;
+      for(let i=1;i<=10;i++){
+        let pregunta = document.getElementsByName("f"+i);
+        for(let op of pregunta){ if(op.checked && op.value==="correcto"){ puntaje++; }}
+      }
+      let score = document.getElementById("finalScore");
+      score.innerHTML="Tu nota es: "+puntaje+"/10";
+
+      if(puntaje >= 7){
+        let nombre = localStorage.getItem("nombre") || document.getElementById('nombre').value;
+        score.innerHTML += "<br><span style='color:green'>¡Aprobaste!</span><br>" +
+        `<button class='boton' onclick='generarCertificado("${nombre}", ${puntaje})'>Descargar Certificado</button>`;
+      } else {
+        score.innerHTML += "<br><span style='color:red'>No aprobaste, intenta de nuevo.</span>";
+      }
+    }
+
+    // Guardado del registro en LocalStorage
+    function validarRegistro(){
+      let n=document.getElementById('nombre').value.trim();
+      let c=document.getElementById('correo').value.trim();
+      let e=document.getElementById('edad').value;
+
+      if(n==='' || c==='' || e===''){
+        alert('Por favor completa todos los campos');
+        return;
+      }
+
+      localStorage.setItem('nombre', n);
+      localStorage.setItem('correo', c);
+      localStorage.setItem('edad', e);
+
+      document.getElementById('modulos').style.display='block';
+      alert('Datos guardados. ¡Bienvenido '+n+'!');
+    }
+  </script>
+</body>
+</html>
