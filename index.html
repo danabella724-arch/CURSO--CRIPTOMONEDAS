@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Curso de Criptomonedas</title>
+  <style>
+    body { margin: 0; background: #f4f7fb; font-family: Arial, sans-serif; color: #222; }
+    header { background: linear-gradient(90deg, #0b409c, #0e5bbf); padding: 40px; text-align: center; color: white; }
+    h1 { margin: 0; font-size: 32px; }
+    .contenedor { max-width: 900px; margin: 30px auto; padding: 20px; background: white; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+    .boton { display: inline-block; background: #0e5bbf; color: white; padding: 12px 18px; text-decoration: none; border-radius: 8px; margin: 10px 0; cursor: pointer; }
+    .boton:hover { background: #08397a; }
+    .modulo { margin: 30px 0; padding: 20px; background: #eef2ff; border-radius: 10px; }
+    iframe { width: 100%; height: 315px; border: none; border-radius: 8px; margin-bottom: 10px; }
+    .pregunta { margin-bottom: 20px; padding: 15px; background: #fff; border-radius: 8px; border: 1px solid #ddd; }
+    .progreso { margin: 15px 0; height: 20px; background: #ddd; border-radius: 10px; overflow: hidden; }
+    .progreso-bar { height: 100%; width: 0%; background: #0e5bbf; transition: width 0.5s; }
+    footer { background: #0b409c; color: white; text-align: center; padding: 15px; margin-top: 40px; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Curso de Criptomonedas</h1>
+    <p>Aprende, reconoce estafas y protégete</p>
+  </header>
+
+  <div class="contenedor" id="inicio">
+    <h2>Registro del estudiante</h2>
+    <label>Nombre:</label><br>
+    <input id="nombre" type="text" style="width:100%;padding:8px;margin:5px 0"><br>
+
+    <label>Correo:</label><br>
+    <input id="correo" type="email" style="width:100%;padding:8px;margin:5px 0"><br>
+
+    <label>Edad:</label><br>
+    <input id="edad" type="number" min="12" style="width:100%;padding:8px;margin:5px 0"><br>
+
+    <button class="boton" onclick="validarRegistro()">Guardar y mostrar módulos</button>
+
+    <div id="modulos" style="display:none;margin-top:20px;">
+      <h2>Selecciona un módulo:</h2>
+      <a class="boton" href="#mod1">Módulo 1</a><br>
+      <a class="boton" href="#mod2">Módulo 2</a><br>
+      <a class="boton" href="#mod3">Módulo 3</a><br>
+      <a class="boton" href="#examenFinal">Examen Final</a>
+      <div class="progreso">
+        <div class="progreso-bar" id="progresoBar"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MÓDULO 1 -->
+  <div class="contenedor modulo" id="mod1">
+    <h2>Módulo 1: ¿Qué son las criptomonedas?</h2>
+    <iframe src="https://www.youtube.com/embed/fXajsTkudb0"></iframe>
+    <h3>Conceptos clave</h3>
+    <ul>
+      <li>Criptomoneda = Activo digital</li>
+      <li>Blockchain = Base de datos descentralizada</li>
+      <li>Volatilidad = Cambios bruscos en el precio</li>
+      <li>Bitcoin = Primera criptomoneda</li>
+      <li>Transacciones peer-to-peer</li>
+    </ul>
+    <div id="m1Preguntas"></div>
+    <button class="boton" onclick="evaluarModulo('m1')">Evaluar módulo 1</button>
+  </div>
+
+  <!-- MÓDULO 2 -->
+  <div class="contenedor modulo" id="mod2">
+    <h2>Módulo 2: Prevención de estafas</h2>
+    <iframe src="https://www.youtube.com/embed/8ZQ7-qCWTrE"></iframe>
+    <h3>Conceptos clave</h3>
+    <ul>
+      <li>No existen ganancias garantizadas</li>
+      <li>Verifica siempre la plataforma</li>
+      <li>No compartas datos personales</li>
+      <li>Estafas Ponzi</li>
+      <li>Phishing</li>
+    </ul>
+    <div id="m2Preguntas"></div>
+    <button class="boton" onclick="evaluarModulo('m2')">Evaluar módulo 2</button>
+  </div>
+
+  <!-- MÓDULO 3 -->
+  <div class="contenedor modulo" id="mod3">
+    <h2>Módulo 3: Uso seguro</h2>
+    <iframe src="https://www.youtube.com/embed/SSo_EIwHSd4"></iframe>
+    <h3>Conceptos clave</h3>
+    <ul>
+      <li>Claves privadas</li>
+      <li>Billeteras frías</li>
+      <li>Autenticación 2FA</li>
+      <li>Verificación de enlaces</li>
+      <li>Backups seguros</li>
+    </ul>
+    <div id="m3Preguntas"></div>
+    <button class="boton" onclick="evaluarModulo('m3')">Evaluar módulo 3</button>
+  </div>
+
+  <!-- EXAMEN FINAL -->
+  <div class="contenedor modulo" id="examenFinal">
+    <h2>Examen Final</h2>
+    <div id="finalQuestions"></div>
+    <button class="boton" onclick="calcularFinal()">Enviar Examen</button>
+    <p id="finalScore"></p>
+    <button id="certificadoBtn" class="boton" style="display:none;" onclick="generarCertificado()">Descargar certificado</button>
+  </div>
+
+  <footer>© 2025 – Curso de Criptomonedas</footer>
+
+<script>
+const preguntas = {
+  m1: [
+    { pregunta: "¿Qué es una criptomoneda?", opciones: ["Activo digital", "Billete físico", "Tarjeta de crédito"], correcta: 0 },
+    { pregunta: "¿Qué significa blockchain?", opciones: ["Base de datos descentralizada", "Archivo Excel", "Plataforma bancaria"], correcta: 0 },
+    { pregunta: "¿Qué es volatilidad?", opciones: ["Cambios bruscos en el precio","Precio estable","Ganancia garantizada"], correcta:0 },
+    { pregunta: "¿Qué es Bitcoin?", opciones: ["Primera criptomoneda","Banco digital","Aplicación de pago"], correcta:0 },
+    { pregunta: "¿Qué es un nodo?", opciones: ["Parte de la red blockchain","Tipo de wallet","Plataforma de intercambio"], correcta:0 }
+  ],
+  m2: [
+    { pregunta: "¿Qué es phishing?", opciones: ["Robo de datos mediante enlaces falsos","Un nuevo token","Pago automático fraudulento"], correcta:0 },
+    { pregunta: "¿Qué es una estafa Ponzi?", opciones: ["Pagar a usuarios antiguos con dinero de nuevos","Minería de criptos","Contrato inteligente"], correcta:0 },
+    { pregunta: "¿Qué significa verificar la plataforma?", opciones: ["Confirmar que es legítima","Descargar apps","Invertir sin leer"], correcta:0 },
+    { pregunta: "¿Qué debes evitar compartir?", opciones: ["Datos personales","Precio de Bitcoin","Nombre de la criptomoneda"], correcta:0 },
+    { pregunta: "¿Qué es un falso soporte técnico?", opciones: ["Persona que finge ayuda para robar","Servicio oficial","Minería"], correcta:0 }
+  ],
+  m3: [
+    { pregunta: "¿Qué es una billetera fría?", opciones: ["Wallet fuera de línea","App móvil","Plataforma web"], correcta:0 },
+    { pregunta: "¿Qué significa 2FA?", opciones: ["Autenticación de dos factores","Pago automático","Token"], correcta:0 },
+    { pregunta: "¿Qué es una clave privada?", opciones: ["Acceso único a wallet","Número público","Contraseña compartida"], correcta:0 },
+    { pregunta: "¿Qué es un backup seguro?", opciones: ["Copia de seguridad de wallet","Clave pública","Exchange"], correcta:0 },
+    { pregunta: "¿Qué debes evitar para proteger tus criptos?", opciones: ["Redes públicas","Red privada","Wallet offline"], correcta:0 }
+  ],
+  final: [
+    { pregunta: "¿Qué es una criptomoneda?", opciones:["Dinero digital basado en criptografía","Moneda física","Tarjeta de crédito"], correcta:0 },
+    { pregunta: "¿Qué es blockchain?", opciones:["Base de datos distribuida","Archivo Excel","Banco central"], correcta:0 },
+    { pregunta: "¿Qué es una estafa Ponzi?", opciones:["Pagar a usuarios antiguos con dinero de nuevos","Minería de criptos","Contrato inteligente"], correcta:0 },
+    { pregunta: "¿Qué es una billetera fría?", opciones:["Wallet fuera de línea","App móvil","Exchange"], correcta:0 },
+    { pregunta: "¿Qué significa 2FA?", opciones:["Autenticación de dos factores","Pago automático","Token"], correcta:0 },
+    { pregunta: "¿Qué es volatilidad?", opciones:["Cambios bruscos en el precio","Precio estable","Ganancia garantizada"], correcta:0 },
+    { pregunta: "¿Qué es phishing?", opciones:["Robo de datos mediante enlaces falsos","Nueva criptomoneda","Pago fraudulento"], correcta:0 },
+    { pregunta: "¿Qué es una clave privada?", opciones:["Acceso único a tu wallet","Número público","Contraseña compartida"], correcta:0 },
+    { pregunta: "¿Qué es un contrato inteligente?", opciones:["Código que ejecuta reglas automáticamente","Contrato en papel","Token"], correcta:0 },
+    { pregunta: "¿Qué es descentralización?", opciones:["Red sin control central","Servidor único","Banco"], correcta:0 }
+  ]
+};
+
+function mostrarPreguntas(mod) {
+  let cont = document.getElementById(mod+'Preguntas') || document.getElementById('finalQuestions');
+  cont.innerHTML = '';
+  preguntas[mod].forEach((p,i) => {
+    let html = `<div class="pregunta"><p>${i+1}. ${p.pregunta}</p>`;
+    p.opciones.forEach((op,j) => {
+      html += `<input type="radio" name="${mod}p${i}" value="${j}"> ${op}<br>`;
+    });
+    html += `</div>`;
+    cont.innerHTML += html;
+  });
+}
+
+function validarRegistro(){
+  let n=document.getElementById('nombre').value.trim();
+  let c=document.getElementById('correo').value.trim();
+  let e=document.getElementById('edad').value;
+  if(n===''||c===''||e===''){ alert('Completa todos los campos'); return; }
+  document.getElementById('modulos').style.display='block';
+  mostrarPreguntas('m1');
+  mostrarPreguntas('m2');
+  mostrarPreguntas('m3');
+  mostrarPreguntas('final');
+}
+
+let progreso = {m1: false, m2: false, m3: false};
+
+function evaluarModulo(mod){
+  let cont=document.getElementById(mod+'Preguntas');
+  let respuestas = preguntas[mod];
+  let correctas = 0;
+  respuestas.forEach((p,i) => {
+    let r = document.querySelector(`input[name=${mod}p${i}]:checked`);
+    if(r && parseInt(r.value) === p.correcta) correctas++;
+  });
+  if(correctas === respuestas.length){
+    cont.innerHTML += `<p>¡Todas correctas! ✔</p>`;
+    progreso[mod] = true;
+    actualizarProgreso();
+  } else {
+    alert(`Respondiste ${correctas} de ${respuestas.length} correctas. Revisa tus respuestas.`);
+  }
+}
+
+function actualizarProgreso(){
+  let totalMods = Object.keys(progreso).length;
+  let completados = Object.values(progreso).filter(v=>v).length;
+  let porcentaje = (completados/totalMods)*100;
+  document.getElementById('progresoBar').style.width = porcentaje+'%';
+}
+
+function calcularFinal(){
+  let total = preguntas.final.length;
+  let puntos = 0;
+  preguntas.final.forEach((p,i)=>{
+    let r = document.querySelector(`input[name=finalp${i}]:checked`);
+    if(r && parseInt(r.value) === p.correcta) puntos++;
+  });
+  let nota = (puntos/total)*10;
+  document.getElementById('finalScore').innerHTML = `Tu nota es: ${nota.toFixed(1)}`;
+  if(nota>=7) document.getElementById('certificadoBtn').style.display='inline-block';
+  else alert('Debes obtener al menos 7 para aprobar.');
+}
+
+function generarCertificado(){
+  const nombre = document.getElementById('nombre').value;
+  const correo = document.getElementById('correo').value;
+  const fecha = new Date().toLocaleDateString();
+  const contenido = `Certificado de Aprobación\n\nSe certifica que ${nombre} (${correo}) aprobó el Curso de Criptomonedas el día ${fecha}.`;
+  const blob = new Blob([contenido], { type: 'text/plain' });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement('a');
+  link.href = url;
+  link.download = 'certificado.txt';
+  link.click();
+}
+</script>
+</body>
+</html>
